@@ -1,0 +1,62 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f3f4f8; color: #222; }
+.header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  gap: 12px; padding: 16px 24px; background: #4f46e5; color: #fff; }
+.header h1 { margin: 0; font-size: 1.4rem; }
+
+/* Layout fluido: 1 coluna (mobile) -> 2 colunas (tablet/desktop) */
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px; max-width: 1100px; margin: 0 auto; }
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .wide { grid-column: 1 / -1; }
+}
+.card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+.card h2 { margin-top: 0; font-size: 1.1rem; }
+
+.btn { background: #4f46e5; color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; cursor: pointer; margin-right: 8px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.secondary { background: #6b7280; }
+.input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 12px; }
+
+/* Acordeão (transição suave com grid-template-rows) */
+.acc-item { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.acc-header { width: 100%; display: flex; justify-content: space-between; padding: 12px; border: 0; background: #f9fafb; cursor: pointer; font-size: 1rem; }
+.acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+.acc-item.open .acc-body { grid-template-rows: 1fr; }
+.acc-inner { overflow: hidden; padding: 0 12px; }
+.acc-item.open .acc-inner { padding: 12px; }
+
+/* Abas */
+.tab-list { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 2px solid #e5e7eb; }
+.tab-list button { border: 0; background: none; padding: 10px 14px; cursor: pointer; border-bottom: 3px solid transparent; }
+.tab-list button.active { border-color: #4f46e5; color: #4f46e5; font-weight: 600; }
+.tab-panel { padding: 16px 4px; }
+
+/* Produtos + paginação */
+.products { list-style: none; padding: 0; margin: 0 0 12px; }
+.products li { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+.pagination { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.pagination button { padding: 8px 12px; border: 1px solid #ccc; background: #fff; border-radius: 6px; cursor: pointer; }
+.pagination button.active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+.pagination button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Barra de progresso */
+.progress { background: #e5e7eb; border-radius: 999px; height: 24px; overflow: hidden; margin-bottom: 12px; }
+.progress-fill { background: #22c55e; height: 100%; color: #fff; font-size: .8rem; display: flex; align-items: center;
+  justify-content: center; transition: width .15s linear; }
+
+/* Dropdown */
+.dropdown { position: relative; }
+.dropdown .btn { background: #fff; color: #4f46e5; margin: 0; }
+.dropdown ul { position: absolute; right: 0; top: 110%; list-style: none; margin: 0; padding: 4px; background: #fff;
+  color: #222; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); min-width: 150px; z-index: 10; }
+.dropdown li button { width: 100%; text-align: left; border: 0; background: none; padding: 10px; cursor: pointer; border-radius: 6px; }
+.dropdown li button:hover { background: #eef2ff; }
+
+/* Toast */
+.toast-container { position: fixed; top: 16px; right: 16px; left: 16px; display: flex; flex-direction: column;
+  align-items: flex-end; gap: 8px; z-index: 100; pointer-events: none; }
+.toast { pointer-events: auto; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 8px;
+  color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.25); max-width: 360px; }
+.toast.success { background: #16a34a; } .toast.error { background: #dc2626; } .toast.info { background: #2563eb; }
+.toast button { background: none; border: 0; color: #fff; font-size: 1.2rem; cursor: pointer; }
